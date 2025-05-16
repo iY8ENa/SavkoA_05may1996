@@ -1,0 +1,912 @@
+{
+	"info": {
+		"_postman_id": "06a163d3-d39a-4f00-8731-4529cee76a64",
+		"name": "Altaivita",
+		"description": "Сайт компании - [https://altaivita.ru](https://altaivita.ru)\n\nSmoke test корзины",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33180256"
+	},
+	"item": [
+		{
+			"name": "check cart items before",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body does not contain the product_list array\", function () {\r",
+							"    pm.expect(pm.response.json()).to.not.have.property('product_list');\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Not)A;Brand\";v=\"99\", \"Opera\";v=\"113\", \"Chromium\";v=\"127\""
+					},
+					{
+						"key": "Accept",
+						"value": "*/*"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Android\""
+					},
+					{
+						"key": "X-Requested-With",
+						"value": "XMLHttpRequest"
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?1"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Mobile Safari/537.36"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded; charset=UTF-8"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-origin"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "host",
+						"value": "altaivita.ru"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "CID",
+							"value": "5a419e2973207ffd4ed29967ee654f8b"
+						},
+						{
+							"key": "LANG_key",
+							"value": "ru"
+						},
+						{
+							"key": "S_CID",
+							"value": "5a419e2973207ffd4ed29967ee654f8b"
+						},
+						{
+							"key": "S_cur_code",
+							"value": "usd"
+						},
+						{
+							"key": "S_customerID",
+							"value": ""
+						},
+						{
+							"key": "S_hint_code",
+							"value": "eur"
+						},
+						{
+							"key": "S_koef",
+							"value": "0.01301"
+						},
+						{
+							"key": "S_wh",
+							"value": "1"
+						},
+						{
+							"key": "action",
+							"value": "ecom_function_checkout_steps"
+						},
+						{
+							"key": "checkout",
+							"value": "cart"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://altaivita.ru/engine/ajax/ajax_ecommerce/ajax_ecommerce.php",
+					"protocol": "https",
+					"host": [
+						"altaivita",
+						"ru"
+					],
+					"path": [
+						"engine",
+						"ajax",
+						"ajax_ecommerce",
+						"ajax_ecommerce.php"
+					]
+				},
+				"description": "Проверка корзины до покупки товара\n\nОР - корзина пустая\n\nСкрипты:\n\n- проверка статус кода\n    \n- проверка на отсутствие списка товаров"
+			},
+			"response": []
+		},
+		{
+			"name": "add_products_to_cart_from_preview",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"btn_text\", \"Добавлено\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Not)A;Brand\";v=\"99\", \"Opera\";v=\"113\", \"Chromium\";v=\"127\""
+					},
+					{
+						"key": "Accept",
+						"value": "*/*"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Android\""
+					},
+					{
+						"key": "X-Requested-With",
+						"value": "XMLHttpRequest"
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?1"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Mobile Safari/537.36"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded; charset=UTF-8"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-origin"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "host",
+						"value": "altaivita.ru"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "LANG_key",
+							"value": "ru"
+						},
+						{
+							"key": "S_CID",
+							"value": "5a419e2973207ffd4ed29967ee654f8b"
+						},
+						{
+							"key": "S_cur_code",
+							"value": "usd"
+						},
+						{
+							"key": "S_customerID",
+							"value": ""
+						},
+						{
+							"key": "S_hint_code",
+							"value": "eur"
+						},
+						{
+							"key": "S_koef",
+							"value": "0.01301"
+						},
+						{
+							"key": "S_wh",
+							"value": "1"
+						},
+						{
+							"key": "product_id",
+							"value": "710"
+						},
+						{
+							"key": "quantity",
+							"value": "2"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://altaivita.ru/engine/cart/add_products_to_cart_from_preview.php",
+					"protocol": "https",
+					"host": [
+						"altaivita",
+						"ru"
+					],
+					"path": [
+						"engine",
+						"cart",
+						"add_products_to_cart_from_preview.php"
+					]
+				},
+				"description": "Добавление товара в корзину в количестве 2 шт.\n\nОР - товар добавлен в корзину\n\nСкрипты:\n\n- проверка стутус кода\n    \n- тело ответа содержит значение \"Добавлено\""
+			},
+			"response": []
+		},
+		{
+			"name": "check cart items after add",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body contains the product_list array\", function () {\r",
+							"    pm.expect(pm.response.json()).to.have.property('product_list');\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Not)A;Brand\";v=\"99\", \"Opera\";v=\"113\", \"Chromium\";v=\"127\""
+					},
+					{
+						"key": "Accept",
+						"value": "*/*"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Android\""
+					},
+					{
+						"key": "X-Requested-With",
+						"value": "XMLHttpRequest"
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?1"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Mobile Safari/537.36"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded; charset=UTF-8"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-origin"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "host",
+						"value": "altaivita.ru"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "CID",
+							"value": "5a419e2973207ffd4ed29967ee654f8b"
+						},
+						{
+							"key": "LANG_key",
+							"value": "ru"
+						},
+						{
+							"key": "S_CID",
+							"value": "5a419e2973207ffd4ed29967ee654f8b"
+						},
+						{
+							"key": "S_cur_code",
+							"value": "usd"
+						},
+						{
+							"key": "S_customerID",
+							"value": ""
+						},
+						{
+							"key": "S_hint_code",
+							"value": "eur"
+						},
+						{
+							"key": "S_koef",
+							"value": "0.01301"
+						},
+						{
+							"key": "S_wh",
+							"value": "1"
+						},
+						{
+							"key": "action",
+							"value": "ecom_function_checkout_steps"
+						},
+						{
+							"key": "checkout",
+							"value": "cart"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://altaivita.ru/engine/ajax/ajax_ecommerce/ajax_ecommerce.php",
+					"protocol": "https",
+					"host": [
+						"altaivita",
+						"ru"
+					],
+					"path": [
+						"engine",
+						"ajax",
+						"ajax_ecommerce",
+						"ajax_ecommerce.php"
+					]
+				},
+				"description": "Проверка корзины на присутствие товара после добавления\n\nОР - товар в корзине\n\nСкрипты:\n\n- проверка статус кода\n    \n- наличие списка товаров"
+			},
+			"response": []
+		},
+		{
+			"name": "change product quantity",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"status\", \"ok\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Not)A;Brand\";v=\"99\", \"Opera\";v=\"113\", \"Chromium\";v=\"127\""
+					},
+					{
+						"key": "Accept",
+						"value": "*/*"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "X-Requested-With",
+						"value": "XMLHttpRequest"
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36 OPR/113.0.0.0"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded; charset=UTF-8"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-origin"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "host",
+						"value": "altaivita.ru"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "LANG_key",
+							"value": "ru"
+						},
+						{
+							"key": "S_CID",
+							"value": "5a419e2973207ffd4ed29967ee654f8b"
+						},
+						{
+							"key": "S_cur_code",
+							"value": "usd"
+						},
+						{
+							"key": "S_customerID",
+							"value": ""
+						},
+						{
+							"key": "S_hint_code",
+							"value": "eur"
+						},
+						{
+							"key": "S_koef",
+							"value": "0.01301"
+						},
+						{
+							"key": "S_wh",
+							"value": "1"
+						},
+						{
+							"key": "action",
+							"value": "update_quantity"
+						},
+						{
+							"key": "itemID",
+							"value": "604679"
+						},
+						{
+							"key": "quantity",
+							"value": "3"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://altaivita.ru/engine/cart/action_with_basket_on_cart_page.php",
+					"protocol": "https",
+					"host": [
+						"altaivita",
+						"ru"
+					],
+					"path": [
+						"engine",
+						"cart",
+						"action_with_basket_on_cart_page.php"
+					]
+				},
+				"description": "Изменить количество товара на 3\n\nСкрипты:\n\n- проверка статус кода\n    \n- проверка успешности обновления"
+			},
+			"response": []
+		},
+		{
+			"name": "check cart items after update",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body contains a product_list with the attribute position equal to 3\", function () {\r",
+							"    pm.expect(pm.response.json().product_list[0].position).to.eql('3')\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Not)A;Brand\";v=\"99\", \"Opera\";v=\"113\", \"Chromium\";v=\"127\""
+					},
+					{
+						"key": "Accept",
+						"value": "*/*"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Android\""
+					},
+					{
+						"key": "X-Requested-With",
+						"value": "XMLHttpRequest"
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?1"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Mobile Safari/537.36"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded; charset=UTF-8"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-origin"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "host",
+						"value": "altaivita.ru"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "CID",
+							"value": "5a419e2973207ffd4ed29967ee654f8b"
+						},
+						{
+							"key": "LANG_key",
+							"value": "ru"
+						},
+						{
+							"key": "S_CID",
+							"value": "5a419e2973207ffd4ed29967ee654f8b"
+						},
+						{
+							"key": "S_cur_code",
+							"value": "usd"
+						},
+						{
+							"key": "S_customerID",
+							"value": ""
+						},
+						{
+							"key": "S_hint_code",
+							"value": "eur"
+						},
+						{
+							"key": "S_koef",
+							"value": "0.01301"
+						},
+						{
+							"key": "S_wh",
+							"value": "1"
+						},
+						{
+							"key": "action",
+							"value": "ecom_function_checkout_steps"
+						},
+						{
+							"key": "checkout",
+							"value": "cart"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://altaivita.ru/engine/ajax/ajax_ecommerce/ajax_ecommerce.php",
+					"protocol": "https",
+					"host": [
+						"altaivita",
+						"ru"
+					],
+					"path": [
+						"engine",
+						"ajax",
+						"ajax_ecommerce",
+						"ajax_ecommerce.php"
+					]
+				},
+				"description": "Проверка товара в корзине на изменение\n\nОР - количество товара 3 шт\n\nСкрипты:\n\n- проверка статус кода\n    \n- проверка количество товара равно 3"
+			},
+			"response": []
+		},
+		{
+			"name": "delete_products_from_cart_preview",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Not)A;Brand\";v=\"99\", \"Opera\";v=\"113\", \"Chromium\";v=\"127\""
+					},
+					{
+						"key": "Accept",
+						"value": "*/*"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "X-Requested-With",
+						"value": "XMLHttpRequest"
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36 OPR/113.0.0.0"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded; charset=UTF-8"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-origin"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "host",
+						"value": "altaivita.ru"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "LANG_key",
+							"value": "ru"
+						},
+						{
+							"key": "S_CID",
+							"value": "5a419e2973207ffd4ed29967ee654f8b"
+						},
+						{
+							"key": "S_cur_code",
+							"value": "usd"
+						},
+						{
+							"key": "S_customerID",
+							"value": ""
+						},
+						{
+							"key": "S_hint_code",
+							"value": "eur"
+						},
+						{
+							"key": "S_koef",
+							"value": "0.01301"
+						},
+						{
+							"key": "S_wh",
+							"value": "1"
+						},
+						{
+							"key": "product_id",
+							"value": "710"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://altaivita.ru/engine/cart/delete_products_from_cart_preview.php",
+					"protocol": "https",
+					"host": [
+						"altaivita",
+						"ru"
+					],
+					"path": [
+						"engine",
+						"cart",
+						"delete_products_from_cart_preview.php"
+					]
+				},
+				"description": "Удаление товара из корзины\n\nОР - товар удален\n\nСкрипты:\n\n- проверка статус кода"
+			},
+			"response": []
+		},
+		{
+			"name": "check cart items after delete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body does not contain the product_list array\", function () {\r",
+							"    pm.expect(pm.response.json()).to.not.have.property('product_list');\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Not)A;Brand\";v=\"99\", \"Opera\";v=\"113\", \"Chromium\";v=\"127\""
+					},
+					{
+						"key": "Accept",
+						"value": "*/*"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Android\""
+					},
+					{
+						"key": "X-Requested-With",
+						"value": "XMLHttpRequest"
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?1"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Mobile Safari/537.36"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded; charset=UTF-8"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-origin"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "host",
+						"value": "altaivita.ru"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "CID",
+							"value": "5a419e2973207ffd4ed29967ee654f8b"
+						},
+						{
+							"key": "LANG_key",
+							"value": "ru"
+						},
+						{
+							"key": "S_CID",
+							"value": "5a419e2973207ffd4ed29967ee654f8b"
+						},
+						{
+							"key": "S_cur_code",
+							"value": "usd"
+						},
+						{
+							"key": "S_customerID",
+							"value": ""
+						},
+						{
+							"key": "S_hint_code",
+							"value": "eur"
+						},
+						{
+							"key": "S_koef",
+							"value": "0.01301"
+						},
+						{
+							"key": "S_wh",
+							"value": "1"
+						},
+						{
+							"key": "action",
+							"value": "ecom_function_checkout_steps"
+						},
+						{
+							"key": "checkout",
+							"value": "cart"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://altaivita.ru/engine/ajax/ajax_ecommerce/ajax_ecommerce.php",
+					"protocol": "https",
+					"host": [
+						"altaivita",
+						"ru"
+					],
+					"path": [
+						"engine",
+						"ajax",
+						"ajax_ecommerce",
+						"ajax_ecommerce.php"
+					]
+				},
+				"description": "Проверка почты после запроса на удаление товара.\n\nОР - товар в корзине отсутствует\n\nСкрипты:\n\n- проверка статус кода\n    \n- проверка на отсутствие списка товаров"
+			},
+			"response": []
+		}
+	]
+}
