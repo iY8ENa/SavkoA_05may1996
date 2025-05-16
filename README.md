@@ -1,4 +1,3 @@
-
 ## Сайт https://altaivita.ru/
 
 ### Стэк:
